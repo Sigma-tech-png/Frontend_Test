@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_KEY}/api/data`)
-      .then((res) => res.json())
-      .then((json) => setData(json.message));
-  }, []);
-
-  return <div>{data}</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
